@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("Build") {
+            steps {
+                sh 'wget 127.0.0.1:666/depends.zip'
+                sh 'unzip depends.zip'
+                sh "mvn -version"
+                sh "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install"
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'AbyssBuilds.jar'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
