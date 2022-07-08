@@ -2,6 +2,8 @@ package net.abyssdev.abyssbuilds.objects;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.abyssdev.abyssbuilds.AbyssBuilds;
+import net.luckperms.api.node.Node;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -30,6 +32,8 @@ public class BuildPlayer {
         this.type = Type.PLAYER;
         this.worlds = new HashSet<>();
         players.add(this);
+
+        AbyssBuilds.getInstance().getLuckPerms().getUserManager().modifyUser(p.getUniqueId(), user -> user.data().add(Node.builder("group." + this.type.name().toLowerCase()).build()));
     }
 
     public BuildPlayer(OfflinePlayer p) {

@@ -6,6 +6,7 @@ import net.abyssdev.abyssbuilds.commands.AbyssBuildsCommand;
 import net.abyssdev.abyssbuilds.data.PlayerData;
 import net.abyssdev.abyssbuilds.objects.BuildPlayer;
 import net.abyssdev.abyssbuilds.tasks.LocationCheck;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -16,13 +17,15 @@ import net.abyssdev.abyssbuilds.listeners.WorldListener;
 
 @Getter
 @Setter
-public class AbyssBuilds extends JavaPlugin {
+public final class AbyssBuilds extends JavaPlugin {
 
     private static AbyssBuilds plugin;
 
     private Location spawn;
     private PlayerData playerData;
+    private LuckPerms luckPerms;
 
+    @Override
     public void onEnable() {
         plugin = this;
 
@@ -42,8 +45,11 @@ public class AbyssBuilds extends JavaPlugin {
         }
 
         Bukkit.getServer().getConsoleSender().sendMessage("AbyssBuilds has been enabled");
+
+        this.luckPerms = Bukkit.getServicesManager().getRegistration(LuckPerms.class).getProvider();
     }
 
+    @Override
     public void onDisable() {
         plugin = null;
 

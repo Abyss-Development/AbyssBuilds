@@ -3,6 +3,7 @@ package net.abyssdev.abyssbuilds.commands;
 import com.google.common.collect.ImmutableList;
 import net.abyssdev.abyssbuilds.objects.BuildPlayer;
 import net.abyssdev.abyssbuilds.utils.ColorUtil;
+import net.luckperms.api.node.Node;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -373,6 +374,9 @@ public class AbyssBuildsCommand implements CommandExecutor {
                     try {
                         BuildPlayer.Type type = BuildPlayer.Type.valueOf(args[2]);
                         changing.setType(type);
+
+                        this.plugin.getLuckPerms().getUserManager().modifyUser(player.getUniqueId(), user -> user.data().add(Node.builder("group." + type.name().toLowerCase()).build()));
+
                         sender.sendMessage(ColorUtil.color("&aSet " + player.getName() + " to type " + type.name()));
                         plugin.getPlayerData().savePlayer(changing);
                         if (!player.isOnline()) {
