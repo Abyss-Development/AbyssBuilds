@@ -7,11 +7,11 @@ pipeline {
                 sh 'wget 127.0.0.1:666/depends.zip'
                 sh 'unzip depends.zip'
                 sh "mvn -version"
-                sh "JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64 mvn clean install"
+                sh "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install"
             }
             post {
                 success {
-                    archiveArtifacts artifacts: 'AbyssBuilds.jar'
+                    archiveArtifacts artifacts: 'target/AbyssBuilds-1.0-SNAPSHOT.jar'
                 }
             }
         }
