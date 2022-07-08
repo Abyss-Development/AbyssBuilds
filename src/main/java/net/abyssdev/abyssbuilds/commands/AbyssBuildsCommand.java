@@ -41,7 +41,7 @@ public class AbyssBuildsCommand implements CommandExecutor {
             , ColorUtil.color("&3&l» &b/abyssbuilds addworld <player> <name/seed>")
             , ColorUtil.color("&3&l» &b/abyssbuilds removeworld <player> <name/see>")
             , ColorUtil.color("&3&l» &b/abyssbuilds settype <player <type>")
-            , ColorUtil.color("&3&l» &b/abyssbuilds drawborder ")
+            , ColorUtil.color("&3&l» &b/abyssbuilds drawborder")
             , ColorUtil.color(" ")
             , ColorUtil.color("&3&m------------------------------")
     ).toArray(new String[0]);
