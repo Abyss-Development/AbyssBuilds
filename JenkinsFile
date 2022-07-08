@@ -11,7 +11,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: 'AbyssBuilds.jar'
+                    archiveArtifacts artifacts: 'AbyssBuilds-PRE.jar'
                 }
             }
         }
