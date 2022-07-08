@@ -9,6 +9,8 @@ pipeline {
                 sh "mvn -version"
                 sh "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install"
 				sh "ls"
+				sh "cd target"
+				sh "ls"
             }
             post {
                 success {
