@@ -28,6 +28,7 @@ public class AbyssBuildsCommand implements CommandExecutor {
             ColorUtil.color("&3&m-------------------------------")
             , ColorUtil.color(" ")
             , ColorUtil.color("&b&lAbyssDev &8&l┃ &bBuilds Help")
+            , ColorUtil.color("&7&oCredit to &f&ojacob#0001&7&o.")
             , ColorUtil.color(" ")
             , ColorUtil.color("&7<> = Required")
             , ColorUtil.color("&7[] = Optional")
