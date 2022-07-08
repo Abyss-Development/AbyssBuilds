@@ -8,7 +8,7 @@ pipeline {
                 sh 'unzip depends.zip'
                 sh "mvn -version"
                 sh "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install"
-				sh "ls /target"
+				sh "ls /var/lib/jenkins/workspace/AbyssBuilds/target/"
             }
             post {
                 success {
