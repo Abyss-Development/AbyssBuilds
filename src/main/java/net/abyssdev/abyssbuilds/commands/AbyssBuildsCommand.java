@@ -1,5 +1,6 @@
 package net.abyssdev.abyssbuilds.commands;
 
+import com.google.common.collect.ImmutableList;
 import net.abyssdev.abyssbuilds.objects.BuildPlayer;
 import net.abyssdev.abyssbuilds.utils.ColorUtil;
 import org.bukkit.*;
@@ -22,6 +23,31 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class AbyssBuildsCommand implements CommandExecutor {
+
+    private static final String[] HELP_MESSAGE = ImmutableList.of(
+            ColorUtil.color("&3&m-------------------------------")
+            , ColorUtil.color(" ")
+            , ColorUtil.color("&b&lAbyssDev &8&l┃ &bBuilds Help")
+            , ColorUtil.color(" ")
+            , ColorUtil.color("&7<> = Required")
+            , ColorUtil.color("&7[] = Optional")
+            , ColorUtil.color(" ")
+            , ColorUtil.color("&3&l» &b/abyssbuilds spawn")
+            , ColorUtil.color("&3&l» &b/abyssbuilds rank")
+            , ColorUtil.color("&3&l» &b/abyssbuilds list [player]")
+            , ColorUtil.color("&3&l» &b/abyssbuilds teleport")
+            , ColorUtil.color("&3&l» &b/abyssbuilds createworld <name/seed> [flat]")
+            , ColorUtil.color("&3&l» &b/abyssbuilds zipworld <world>")
+            , ColorUtil.color("&3&l» &b/abyssbuilds addworld <player> <name/seed>")
+            , ColorUtil.color("&3&l» &b/abyssbuilds removeworld <player> <name/see>")
+            , ColorUtil.color("&3&l» &b/abyssbuilds settype <player <type>")
+            , ColorUtil.color("&3&l» &b/abyssbuilds drawborder ")
+            , ColorUtil.color("&3&l» &b/abyssbuilds list")
+            , ColorUtil.color("&3&l» &b/abyssbuilds list")
+            , ColorUtil.color("&3&l» &b/abyssbuilds list")
+            , ColorUtil.color(" ")
+            , ColorUtil.color("&3&m------------------------------")
+    ).toArray(new String[0]);
 
     private AbyssBuilds plugin;
 
@@ -187,7 +213,7 @@ public class AbyssBuildsCommand implements CommandExecutor {
                     return true;
 
                 } else {
-                    sender.sendMessage(ColorUtil.color("&cYou need to specify a world name or seed (/abyssbuilds createworld <name/seed>)"));
+                    sender.sendMessage(ColorUtil.color("&cYou need to specify a world name (/abyssbuilds zipworld <world>)"));
                     return true;
                 }
             } else if (args[0].equalsIgnoreCase("addworld")) {
@@ -360,7 +386,7 @@ public class AbyssBuildsCommand implements CommandExecutor {
                         return true;
                     }
                 } else {
-                    sender.sendMessage(ColorUtil.color("&cYou need to specify a world and player (/abyssbuilds addworld <player> <name/seed>)"));
+                    sender.sendMessage(ColorUtil.color("&cYou need to specify a type and a player (/abyssbuilds settype <player> <type>)"));
                     return true;
                 }
             } else if (args[0].equalsIgnoreCase("drawborder")) {
@@ -419,7 +445,7 @@ public class AbyssBuildsCommand implements CommandExecutor {
                 return true;
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Invalid syntax");
+            sender.sendMessage(AbyssBuildsCommand.HELP_MESSAGE);
             return true;
         }
     }
