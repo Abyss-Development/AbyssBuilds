@@ -8,11 +8,10 @@ pipeline {
                 sh 'unzip depends.zip'
                 sh "mvn -version"
                 sh "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install"
-				sh "ls /var/lib/jenkins/workspace/AbyssBuilds/target/"
             }
             post {
                 success {
-                    archiveArtifacts artifacts: 'target/AbyssBuilds-PRE.jar'
+                    archiveArtifacts artifacts: '/var/lib/jenkins/workspace/AbyssBuilds/target/AbyssBuilds-1.0-SNAPSHOT.jar'
                 }
             }
         }
