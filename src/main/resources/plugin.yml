@@ -1,0 +1,8 @@
+name: AbyssBuilds
+version: 1.0.0-SNAPSHOT
+author: AbyssDev
+main: net.abyssdev.abyssbuilds.AbyssBuilds
+api-version: 1.17
+commands:
+  abyssbuilds:
+    usage: /abyssbuilds
