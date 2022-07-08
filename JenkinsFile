@@ -11,7 +11,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '/var/lib/jenkins/workspace/AbyssBuilds/target/AbyssBuilds-1.0-SNAPSHOT.jar'
+                    archiveArtifacts artifacts: 'target/AbyssBuilds-1.0-SNAPSHOT.jar'
                 }
             }
         }
