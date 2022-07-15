@@ -8,3 +8,4 @@ commands:
     usage: /abyssbuilds
 depend:
   - LuckPerms
+  - Multiverse-Core
