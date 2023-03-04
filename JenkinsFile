@@ -20,6 +20,30 @@ pipeline {
     post {
         always {
             cleanWs()
+            script {
+                def project = env.JOB_NAME.split('\\/')[-1]
+                def status = currentBuild.result ?: 'UNKNOWN'
+                def changeList = []
+                currentBuild.changeSets.each { changeSet ->
+                    changeSet.items.each { item ->
+                        def shortCommitId = item.commitId.substring(0, 7)
+                        def author = item.author.displayName.split("\\+")[1]
+                        def msg = "`${shortCommitId}` ${item.msg} - ${author}"
+                        changeList.add("- $msg")
+                    }
+                }
+                def date = new Date()
+                def formattedDate = date.format('yyyy-MM-dd HH:mm:ss z')
+                def payload = [
+                    webhookURL: "https://discord.com/api/webhooks/1081522759970074686/lcMd3h5jqoREtc_C5qQGeXgeyRXue5MC90P8uztMuE_962cMWkW5enk-4OEdsbmdy2vH",
+                    title: "${project} #${env.BUILD_NUMBER}",
+                    link: env.BUILD_URL,
+                    description: "**Build:** ${env.BUILD_NUMBER}\n**Status:** ${status}\n**Changes:**\n${changeList.join('\n')}",
+                    footer: "Built on ${formattedDate}",
+                    result: currentBuild.currentResult
+                ]
+                discordSend payload
+            }
         }
     }
 }
