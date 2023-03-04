@@ -27,7 +27,7 @@ pipeline {
                 currentBuild.changeSets.each { changeSet ->
                     changeSet.items.each { item ->
                         def shortCommitId = item.commitId.substring(0, 7)
-                        def author = item.author.displayName.split("\\+")[1]
+                        def author = item.author.displayName.split("\\+")[-1]
                         def msg = "`${shortCommitId}` ${item.msg} - ${author}"
                         changeList.add("- $msg")
                     }
