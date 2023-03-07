@@ -37,7 +37,7 @@ pipeline {
                 def seconds = buildTime % 60
 
                 def buildTimeFormatted = ""
-                if (minutes => 1) {
+                if (minutes >= 1) {
                     buildTimeFormatted += "${minutes}m "
                 }
                 buildTimeFormatted += "${seconds}s"
