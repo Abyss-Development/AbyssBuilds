@@ -32,10 +32,8 @@ pipeline {
                 def date = new Date()
                 def formattedDate = date.format('yyyy-MM-dd HH:mm:ss z')
                 def buildTime = ((System.currentTimeMillis() - currentBuild.startTimeInMillis) / 1000).intValue()
-
-                def minutes = buildTime / 60
-                def seconds = buildTime % 60
-
+                def minutes = (buildTime / 60).intValue()
+                def seconds = (buildTime % 60).intValue()
                 def buildTimeFormatted = ""
                 if (minutes >= 1) {
                     buildTimeFormatted += "${minutes}m "
