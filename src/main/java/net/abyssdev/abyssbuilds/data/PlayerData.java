@@ -93,5 +93,4 @@ public class PlayerData {
         }
         return new BuildPlayer(player);
     }
-
 }

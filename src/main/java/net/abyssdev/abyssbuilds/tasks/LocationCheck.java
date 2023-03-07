@@ -27,5 +27,4 @@ public class LocationCheck {
             }
         }, 20L, 20L);
     }
-
 }

@@ -77,5 +77,4 @@ public final class AbyssBuilds extends JavaPlugin {
     public static AbyssBuilds getInstance() {
         return plugin;
     }
-
 }

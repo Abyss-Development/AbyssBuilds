@@ -4,9 +4,6 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                sh 'wget 127.0.0.1:666/depends.zip'
-                sh 'unzip depends.zip'
-                sh "mvn -version"
                 sh "sudo JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 mvn clean install"
             }
             post {
@@ -34,11 +31,21 @@ pipeline {
                 }
                 def date = new Date()
                 def formattedDate = date.format('yyyy-MM-dd HH:mm:ss z')
+                def buildTime = ((System.currentTimeMillis() - currentBuild.startTimeInMillis) / 1000).intValue()
+
+                def minutes = buildTime / 60
+                def seconds = buildTime % 60
+
+                def buildTimeFormatted = ""
+                if (minutes => 1) {
+                    buildTimeFormatted += "${minutes}m "
+                }
+                buildTimeFormatted += "${seconds}s"
                 def payload = [
                     webhookURL: "https://discord.com/api/webhooks/1081522759970074686/lcMd3h5jqoREtc_C5qQGeXgeyRXue5MC90P8uztMuE_962cMWkW5enk-4OEdsbmdy2vH",
                     title: "${project} #${env.BUILD_NUMBER}",
                     link: env.BUILD_URL,
-                    description: "**Build:** ${env.BUILD_NUMBER}\n**Status:** ${status}\n**Changes:**\n${changeList.join('\n')}",
+                    description: "**Build:** ${env.BUILD_NUMBER}\n**Status:** ${status}\n**Build Time:** ${buildTimeFormatted}\n**Changes:**\n${changeList.join('\n')}",
                     footer: "Built on ${formattedDate}",
                     result: currentBuild.currentResult
                 ]

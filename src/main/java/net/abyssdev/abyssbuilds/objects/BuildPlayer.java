@@ -97,5 +97,4 @@ public class BuildPlayer {
         private int rank;
 
     }
-
 }
